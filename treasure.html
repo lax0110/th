@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCII Decimal Decoder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+    }
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+    <h2>Congratulations on reaching the final stage!</h2>
+    <p>To proceed, convert this binary number to its decimal value:<br>
+    <strong>01100101 01101100 01111001 01110011 01101001 01110101 01101101</strong><br>
+    After decoding, enter the values into the portal provided below. If correct, it will lead you to a table that will help you find the final treasure hunt destination.</p>
+    <p>Good luck!</p>
+    <h2>ASCII Decimal Decoder</h2>
+    <p>Enter the decimal values to decode the word "elysium":</p>
+    <input type="text" id="decimalInput" placeholder="Enter decimal values...">
+    <button onclick="decodeDecimal()">Check</button>
+    <p class="result" id="resultMessage"></p>
+
+    <script>
+        function decodeDecimal() {
+            // Get input value and remove any extra spaces
+            let inputDecimal = document.getElementById('decimalInput').value.trim();
+
+            // Expected decimal sequence for "elysium"
+            let expectedDecimal = "101 108 121 115 105 117 109";
+
+            // Function to convert decimal to ASCII text
+            function decimalToText(decimalStr) {
+                return decimalStr.split(' ').map(dec => String.fromCharCode(parseInt(dec, 10))).join('');
+            }
+
+            // Check if input matches expected decimal sequence
+            if (inputDecimal === expectedDecimal) {
+                // Convert decimal to text
+                let decodedText = decimalToText(inputDecimal);
+                // Display success message with link to ASCII table
+                document.getElementById('resultMessage').innerHTML = `
+                    Correct decimal sequence! The decoded word is "${decodedText}".<br>
+                    Click <a href="https://www.johndcook.com/ascii.png" target="_blank">here</a> to see the ASCII table.
+                `;
+            } else {
+                // Convert input decimal to text
+                let decodedText = decimalToText(inputDecimal);
+                // Display error message with the attempted decoded text
+                document.getElementById('resultMessage').innerHTML = `
+                    Incorrect decimal sequence. The decoded text is "${decodedText}". Please try again.
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
